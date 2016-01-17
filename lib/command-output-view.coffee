@@ -23,6 +23,7 @@ class CommandOutputView extends View
           @span class: 'icon icon-x', click: 'close'
 
   initialize: ->
+    console.log "command-output-view initialize"
     @userHome = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
     cmd = 'test -e /etc/profile && source /etc/profile;test -e ~/.profile && source ~/.profile; node -pe "JSON.stringify(process.env)"'
     shell = atom.config.get 'terminal-panel.shell'
@@ -56,6 +57,7 @@ class CommandOutputView extends View
         @spawn inputCmd, cmd, args
 
   showCmd: ->
+    console.log "command-output-view showCmd"
     @cmdEditor.show()
     @cmdEditor.css('visibility', '')
     @cmdEditor.getModel().selectAll()
@@ -64,9 +66,11 @@ class CommandOutputView extends View
     @scrollToBottom()
 
   scrollToBottom: ->
+    console.log "command-output-view scrollToBottom"
     @cliOutput.scrollTop 10000000
 
   flashIconClass: (className, time=100)=>
+    console.log "command-output-view flashIconClass"
     addClass @statusIcon, className
     @timer and clearTimeout(@timer)
     onStatusOut = =>
@@ -74,6 +78,7 @@ class CommandOutputView extends View
     @timer = setTimeout onStatusOut, time
 
   destroy: ->
+    console.log "command-output-view destroy"
     _destroy = =>
       if @hasParent()
         @close()
@@ -87,10 +92,12 @@ class CommandOutputView extends View
       _destroy()
 
   kill: ->
+    console.log "command-output-view kill"
     if @program
       @program.kill()
 
   open: ->
+    console.log "command-output-view open"
     @lastLocation = atom.workspace.getActivePane()
     @panel = atom.workspace.addBottomPanel(item: this) unless @hasParent()
     if lastOpenedView and lastOpenedView != this
@@ -104,18 +111,21 @@ class CommandOutputView extends View
     @cliOutput.css('max-height', atom.config.get('terminal-panel.windowHeight') + 'vh')
 
   close: ->
+    console.log "command-output-view close"
     @lastLocation.activate()
     @detach()
     @panel.destroy()
     lastOpenedView = null
 
   toggle: ->
+    console.log "command-output-view toggle"
     if @hasParent()
       @close()
     else
       @open()
 
   cd: (args)->
+    console.log "command-output-view cd"
     args = [atom.project.path] if not args[0]
     dir = resolve @getCwd(), args[0]
     fs.stat dir, (err, stat) =>
@@ -129,6 +139,7 @@ class CommandOutputView extends View
       @message "cwd: #{@cwd}"
 
   ls: (args) ->
+    console.log "command-output-view ls"
     files = fs.readdirSync @getCwd()
     filesBlocks = []
     files.forEach (filename) =>
@@ -146,6 +157,7 @@ class CommandOutputView extends View
     @message filesBlocks.join('') + '<div class="clear"/>'
 
   _fileInfoHtml: (filename, parent) ->
+    console.log "command-output-view _fileInfoHtml"
     classes = ['icon', 'file-info']
     filepath = parent + '/' + filename
     stat = fs.lstatSync filepath
@@ -170,6 +182,7 @@ class CommandOutputView extends View
     ["<span class=\"#{classes.join ' '}\">#{filename}</span>", stat, filename]
 
   getGitStatusName: (path, gitRoot, repo) ->
+    console.log "command-output-view getGitStatusName"
     status = (repo.getCachedPathStatus or repo.getPathStatus)(path)
     if status
       if repo.isStatusModified status
@@ -180,18 +193,21 @@ class CommandOutputView extends View
       return 'ignored'
 
   message: (message) ->
+    console.log "command-output-view message"
     @cliOutput.append message
     @showCmd()
     removeClass @statusIcon, 'status-error'
     addClass @statusIcon, 'status-success'
 
   errorMessage: (message) ->
+    console.log "command-output-view errorMessage"
     @cliOutput.append message
     @showCmd()
     removeClass @statusIcon, 'status-success'
     addClass @statusIcon, 'status-error'
 
   getCwd: ->
+    console.log "command-output-view getCwd"
     extFile = extname atom.project.getPaths()[0]
 
     if extFile == ""
@@ -210,6 +226,7 @@ class CommandOutputView extends View
     @cwd or projectDir or @userHome
 
   spawn: (inputCmd, cmd, args) ->
+    console.log "command-output-view spawn"
     @cmdEditor.css('visibility', 'hidden')
     htmlStream = ansihtml()
     htmlStream.on 'data', (data) =>
