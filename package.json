@@ -1,12 +1,12 @@
 {
-  "name": "terminal-panel",
+  "name": "terminal-panel-sysj",
   "main": "./lib/cli-status",
-  "version": "1.14.1",
-  "description": "A terminal interface and status icon. Fork of terminal-status",
-  "repository": "https://github.com/thedaniel/terminal-panel",
+  "version": "0.0.0",
+  "description": "A terminal interface and status icon. Fork of terminal-panel.",
+  "repository": "https://github.com/arrayoutofbounds/terminal-panel",
   "license": "MIT",
   "engines": {
-    "atom": ">0.135.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
     "ansi-html-stream": "0.0.3",
