@@ -1,7 +1,7 @@
 {
   "name": "terminal-panel-sysj",
   "main": "./lib/cli-status",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A terminal interface and status icon. Fork of terminal-panel.",
   "repository": "https://github.com/arrayoutofbounds/terminal-panel",
   "license": "MIT",
