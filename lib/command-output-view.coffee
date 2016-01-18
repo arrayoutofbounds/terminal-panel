@@ -88,7 +88,7 @@ class CommandOutputView extends View
 
   kill: -> # if the process that is running is there then kill it
     if @program
-      @program.kill() # calls kill on the variable that holds exec process from the nodejs api 
+      @program.kill() # calls kill on the variable that holds exec process from the nodejs api
 
   open: -> # open called when toggled
     @lastLocation = atom.workspace.getActivePane()

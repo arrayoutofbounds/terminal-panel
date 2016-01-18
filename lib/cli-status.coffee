@@ -4,6 +4,7 @@ module.exports =
   cliStatusView: null
 
   activate: (state) ->
+    console.log "Activating terminal panel"
     console.log state
     atom.packages.onDidActivateInitialPackages =>
       @cliStatusView = new CliStatusView(state.cliStatusViewState)
@@ -14,6 +15,7 @@ module.exports =
     @cliStatusView.destroy()
 
   provideCommandOutputView: -> # send the command output view so it can make a new terminal etc.
+    console.log "API will be returned"
     @cliStatusView
 
   config:
