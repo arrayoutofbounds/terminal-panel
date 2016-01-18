@@ -4,11 +4,11 @@ module.exports =
   cliStatusView: null
 
   activate: (state) ->
-    console.log "state is " + state
+    console.log state
     atom.packages.onDidActivateInitialPackages =>
-      createStatusEntry = =>
-        @cliStatusView = new CliStatusView(state.cliStatusViewState)
-      createStatusEntry()
+      @cliStatusView = new CliStatusView(state.cliStatusViewState)
+      @cliStatusView
+
 
   deactivate: ->
     @cliStatusView.destroy()
