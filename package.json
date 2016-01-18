@@ -10,6 +10,7 @@
   },
   "activationCommands": {
     "atom-workspace": [
+      "terminal-panel:activate",
       "terminal-panel:new",
       "terminal-panel:toggle"
     ]

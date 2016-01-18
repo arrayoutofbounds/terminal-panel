@@ -19,6 +19,7 @@ class CliStatusView extends View
       'terminal-panel:next': => @activeNextCommandView()
       'terminal-panel:prev': => @activePrevCommandView()
       'terminal-panel:destroy': => @destroyActiveTerm()
+      'terminal-panel:activate': => @activateTerminal()
 
     atom.commands.add '.cli-status',
       'core:cancel': => @toggle()
@@ -26,6 +27,10 @@ class CliStatusView extends View
     @attach()
     @toolTipDisposable?.dispose()
     @toolTipDisposable = atom.tooltips.add @termStatusAdd, title: "Add a terminal panel"
+
+
+  activateTerminal: ->
+    console.log "terminal activated"
 
   createCommandView: ->
     domify = require 'domify'
