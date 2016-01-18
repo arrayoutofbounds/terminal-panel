@@ -4,6 +4,7 @@ module.exports =
   cliStatusView: null
 
   activate: (state) ->
+    console.log "state is " + state
     atom.packages.onDidActivateInitialPackages =>
       createStatusEntry = =>
         @cliStatusView = new CliStatusView(state.cliStatusViewState)
@@ -12,7 +13,7 @@ module.exports =
   deactivate: ->
     @cliStatusView.destroy()
 
-  provideCommandOutputView: ->
+  provideCommandOutputView: -> # send the command output view so it can make a new terminal etc.
     "hey"
 
   config:
