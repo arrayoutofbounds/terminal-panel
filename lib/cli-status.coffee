@@ -6,9 +6,10 @@ module.exports =
   activate: (state) ->
     console.log "Activating terminal panel"
     console.log state
-    atom.packages.onDidActivateInitialPackages =>
-      @cliStatusView = new CliStatusView(state.cliStatusViewState)
-      @cliStatusView
+    @cliStatusView = new CliStatusView(state.cliStatusViewState)
+    #atom.packages.onDidActivateInitialPackages =>
+    #  @cliStatusView = new CliStatusView(state.cliStatusViewState)
+    #  @cliStatusView
 
 
   deactivate: ->
