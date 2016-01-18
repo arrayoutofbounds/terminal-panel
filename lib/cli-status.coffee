@@ -14,7 +14,7 @@ module.exports =
     @cliStatusView.destroy()
 
   provideCommandOutputView: -> # send the command output view so it can make a new terminal etc.
-    "hey"
+    @cliStatusView
 
   config:
     'windowHeight':
