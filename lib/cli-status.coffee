@@ -6,7 +6,7 @@ module.exports =
   activate: (state) ->
     atom.packages.onDidActivateInitialPackages =>
       createStatusEntry = =>
-        @cliStatusView = new CViewSingleton(state.cliStatusViewState)
+        @cliStatusView = CViewSingleton.get(state.cliStatusViewState)
       createStatusEntry()
 
   deactivate: ->
