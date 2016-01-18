@@ -1,4 +1,4 @@
-CliStatusView = require './cli-status-view'
+CViewSingleton = require './cli-status-view'
 
 module.exports =
   cliStatusView: null
@@ -6,14 +6,14 @@ module.exports =
   activate: (state) ->
     atom.packages.onDidActivateInitialPackages =>
       createStatusEntry = =>
-        @cliStatusView = new CliStatusView(state.cliStatusViewState)
+        @cliStatusView = new CViewSingleton(state.cliStatusViewState)
       createStatusEntry()
 
   deactivate: ->
     @cliStatusView.destroy()
 
   provideCommandOutputView: ->
-    CliStatusView.get().newTermClick() # this is returned
+    CViewSingleton.get().newTermClick() # this is returned
 
   config:
     'windowHeight':
