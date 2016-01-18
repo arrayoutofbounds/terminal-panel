@@ -60,7 +60,7 @@ class CliStatusView extends View
     index = @commandViews.indexOf commandView
     index >=0 and @commandViews.splice index, 1
 
-  newTermClick: -> # create new command view and toggle it so it open 
+  newTermClick: -> # create new command view and toggle it so it open
     @createCommandView().toggle()
 
   attach: ->
