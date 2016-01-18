@@ -18,52 +18,52 @@ class CommandOutputView extends View
       @div class: 'cli-panel-input', =>
         @subview 'cmdEditor', new TextEditorView(mini: true, placeholderText: 'input your command here')
         @div class: 'btn-group', =>
-          @button outlet: 'killBtn', click: 'kill', class: 'btn hide', 'kill'
-          @button click: 'destroy', class: 'btn', 'destroy'
-          @span class: 'icon icon-x', click: 'close'
+          @button outlet: 'killBtn', click: 'kill', class: 'btn hide', 'kill' # calls the kill method in this class
+          @button click: 'destroy', class: 'btn', 'destroy' # calls the destroy method in this class
+          @span class: 'icon icon-x', click: 'close' # calls the close method
 
   initialize: ->
-    @userHome = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
+    @userHome = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE # set the home of the user in case folder is not there
     cmd = 'test -e /etc/profile && source /etc/profile;test -e ~/.profile && source ~/.profile; node -pe "JSON.stringify(process.env)"'
-    shell = atom.config.get 'terminal-panel.shell'
-    exec cmd, {shell}, (code, stdout, stderr) ->
+    shell = atom.config.get 'terminal-panel.shell' # this is the default value in the config in the main file
+    exec cmd, {shell}, (code, stdout, stderr) -> # start a shell process
       try
         process.env = JSON.parse(stdout)
       catch e
     atom.commands.add 'atom-workspace',
       "cli-status:toggle-output": => @toggle()
 
-    atom.commands.add @cmdEditor.element,
-      'core:confirm': =>
-        inputCmd = @cmdEditor.getModel().getText()
-        @cliOutput.append "\n$>#{inputCmd}\n"
-        @scrollToBottom()
-        args = []
+    atom.commands.add @cmdEditor.element, # in the text box where input is written add commands
+      'core:confirm': => # when enter is pressed in the box text editor
+        inputCmd = @cmdEditor.getModel().getText() # get the text that was typed
+        @cliOutput.append "\n$>#{inputCmd}\n" # append the text typed to the output of the cli which is above input box
+        @scrollToBottom() #scroll to the bottom so it always shows the latest info
+        args = [] # arguments to the command put in an array
         # support 'a b c' and "foo bar"
-        inputCmd.replace /("[^"]*"|'[^']*'|[^\s'"]+)/g, (s) =>
+        inputCmd.replace /("[^"]*"|'[^']*'|[^\s'"]+)/g, (s) => #replace any escape characters etc with "s"s
           if s[0] != '"' and s[0] != "'"
-            s = s.replace /~/g, @userHome
-          args.push s
-        cmd = args.shift()
-        if cmd == 'cd'
+            s = s.replace /~/g, @userHome # if nothing is there then replace it with the home
+          args.push s # push into the array
+        cmd = args.shift() # this removes the first arg in the list
+        if cmd == 'cd' # call custom cd command
           return @cd args
-        if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs')
+        if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs') # call custom ls command
           return @ls args
-        if cmd == 'clear'
+        if cmd == 'clear' # call clear and empty the cli output div and make input box empty by setting it to empty string
           @cliOutput.empty()
           @message '\n'
           return @cmdEditor.setText ''
         @spawn inputCmd, cmd, args
 
   showCmd: ->
-    @cmdEditor.show()
+    @cmdEditor.show() #show the input box
     @cmdEditor.css('visibility', '')
     @cmdEditor.getModel().selectAll()
-    @cmdEditor.setText('') if atom.config.get('terminal-panel.clearCommandInput')
-    @cmdEditor.focus()
-    @scrollToBottom()
+    @cmdEditor.setText('') if atom.config.get('terminal-panel.clearCommandInput') # if cleared input then clear it
+    @cmdEditor.focus() # focus on input so user can type in it
+    @scrollToBottom() # scroll to bottom of cli so latest results can be seen
 
-  scrollToBottom: ->
+  scrollToBottom: -> # scrolls cli to the bottom so latest values can be seen
     @cliOutput.scrollTop 10000000
 
   flashIconClass: (className, time=100)=>
@@ -73,24 +73,24 @@ class CommandOutputView extends View
       removeClass @statusIcon, className
     @timer = setTimeout onStatusOut, time
 
-  destroy: ->
+  destroy: -> #destroy the terminal
     _destroy = =>
       if @hasParent()
         @close()
       if @statusIcon and @statusIcon.parentNode
         @statusIcon.parentNode.removeChild(@statusIcon)
       @statusView.removeCommandView this
-    if @program
+    if @program # this is the program created by the spawn process at the bottom
       @program.once 'exit', _destroy
       @program.kill()
     else
       _destroy()
 
-  kill: ->
+  kill: -> # if the process that is running is there then kill it
     if @program
-      @program.kill()
+      @program.kill() # calls kill on the variable that holds exec process from the nodejs api 
 
-  open: ->
+  open: -> # open called when toggled
     @lastLocation = atom.workspace.getActivePane()
     @panel = atom.workspace.addBottomPanel(item: this) unless @hasParent()
     if lastOpenedView and lastOpenedView != this
@@ -109,15 +109,15 @@ class CommandOutputView extends View
     @panel.destroy()
     lastOpenedView = null
 
-  toggle: ->
+  toggle: -> # if the terminal has a parent then close else open it
     if @hasParent()
       @close()
     else
       @open()
 
-  cd: (args)->
+  cd: (args)-> # custom cd commmand
     args = [atom.project.path] if not args[0]
-    dir = resolve @getCwd(), args[0]
+    dir = resolve @getCwd(), args[0] # get current working dir
     fs.stat dir, (err, stat) =>
       if err
         if err.code == 'ENOENT'
@@ -128,8 +128,8 @@ class CommandOutputView extends View
       @cwd = dir
       @message "cwd: #{@cwd}"
 
-  ls: (args) ->
-    files = fs.readdirSync @getCwd()
+  ls: (args) -> # custom ls command
+    files = fs.readdirSync @getCwd() # read the current working directory sync
     filesBlocks = []
     files.forEach (filename) =>
       filesBlocks.push @_fileInfoHtml(filename, @getCwd())
@@ -145,7 +145,7 @@ class CommandOutputView extends View
       b[0]
     @message filesBlocks.join('') + '<div class="clear"/>'
 
-  _fileInfoHtml: (filename, parent) ->
+  _fileInfoHtml: (filename, parent) -> #custom file info called by custom ls
     classes = ['icon', 'file-info']
     filepath = parent + '/' + filename
     stat = fs.lstatSync filepath
@@ -179,19 +179,19 @@ class CommandOutputView extends View
     if repo.isPathIgnore path
       return 'ignored'
 
-  message: (message) ->
+  message: (message) -> # append message to cli output
     @cliOutput.append message
-    @showCmd()
-    removeClass @statusIcon, 'status-error'
-    addClass @statusIcon, 'status-success'
+    @showCmd() # show the command
+    removeClass @statusIcon, 'status-error' # this makes the bottom icon red
+    addClass @statusIcon, 'status-success' # this makes the bottom icon for terminal a green
 
-  errorMessage: (message) ->
+  errorMessage: (message) -> # opposite of the message method
     @cliOutput.append message
     @showCmd()
     removeClass @statusIcon, 'status-success'
     addClass @statusIcon, 'status-error'
 
-  getCwd: ->
+  getCwd: -> # get the current working directory
     extFile = extname atom.project.getPaths()[0]
 
     if extFile == ""
@@ -207,39 +207,39 @@ class CommandOutputView extends View
     else
       projectDir = dirname atom.project.getPaths()[0]
 
-    @cwd or projectDir or @userHome
+    @cwd or projectDir or @userHome # returns this as one of them have to be true
 
-  spawn: (inputCmd, cmd, args) ->
+  spawn: (inputCmd, cmd, args) -> #spawn a command
     @cmdEditor.css('visibility', 'hidden')
     htmlStream = ansihtml()
     htmlStream.on 'data', (data) =>
-      @cliOutput.append data
-      @scrollToBottom()
-    shell = atom.config.get 'terminal-panel.shell'
+      @cliOutput.append data # append the data to the cli
+      @scrollToBottom() # scroll to the bottom
+    shell = atom.config.get 'terminal-panel.shell' # get the default shell from the main file default
     try
-      @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd(), shell: shell
+      @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd(), shell: shell # call exec on the input cmd and set the current working directory and shell
       @program.stdout.pipe htmlStream
       @program.stderr.pipe htmlStream
       removeClass @statusIcon, 'status-success'
       removeClass @statusIcon, 'status-error'
-      addClass @statusIcon, 'status-running'
-      @killBtn.removeClass 'hide'
-      @program.once 'exit', (code) =>
+      addClass @statusIcon, 'status-running' # icon at the bottom shows runnning
+      @killBtn.removeClass 'hide' # show the kill button now that the process is running
+      @program.once 'exit', (code) => # if process stops then make kill button disappear and log the exit number
         console.log 'exit', code if atom.config.get('terminal-panel.logConsole')
         @killBtn.addClass 'hide'
-        removeClass @statusIcon, 'status-running'
-        @program = null
+        removeClass @statusIcon, 'status-running' # change icon
+        @program = null # current running process becomes null
         addClass @statusIcon, code == 0 and 'status-success' or 'status-error'
-        @showCmd()
-      @program.on 'error', (err) =>
+        @showCmd() # this shows the command prompt or cli above input with the output
+      @program.on 'error', (err) => # same as above
         console.log 'error' if atom.config.get('terminal-panel.logConsole')
         @cliOutput.append err.message
         @showCmd()
         addClass @statusIcon, 'status-error'
-      @program.stdout.on 'data', =>
+      @program.stdout.on 'data', => # same as above except for when the process is running
         @flashIconClass 'status-info'
         removeClass @statusIcon, 'status-error'
-      @program.stderr.on 'data', =>
+      @program.stderr.on 'data', => # if there is a std error
         console.log 'stderr' if atom.config.get('terminal-panel.logConsole')
         @flashIconClass 'status-error', 300
 

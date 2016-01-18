@@ -34,19 +34,19 @@ class CliStatusView extends View
     commandOutputView = new CommandOutputView
     commandOutputView.statusIcon = termStatus
     commandOutputView.statusView = this
-    @commandViews.push commandOutputView
-    termStatus.addEventListener 'click', ->
+    @commandViews.push commandOutputView # push the new command output view in to an array of them.
+    termStatus.addEventListener 'click', -> # clicking on the icon should toggle the terminal
       commandOutputView.toggle()
     @termStatusContainer.append termStatus
     return commandOutputView
 
-  activeNextCommandView: ->
+  activeNextCommandView: -> # gets the next open terminal from the array of them
     @activeCommandView @activeIndex + 1
 
-  activePrevCommandView: ->
+  activePrevCommandView: -> # gets the previous open terminal from the array of them
     @activeCommandView @activeIndex - 1
 
-  activeCommandView: (index) ->
+  activeCommandView: (index) -> # switches between terminals
     if index >= @commandViews.length
       index = 0
     if index < 0
@@ -56,17 +56,17 @@ class CliStatusView extends View
   setActiveCommandView: (commandView) ->
     @activeIndex = @commandViews.indexOf commandView
 
-  removeCommandView: (commandView) ->
+  removeCommandView: (commandView) -> # remove from array
     index = @commandViews.indexOf commandView
     index >=0 and @commandViews.splice index, 1
 
-  newTermClick: ->
+  newTermClick: -> # create new command view and toggle it so it open 
     @createCommandView().toggle()
 
   attach: ->
     document.querySelector("status-bar").addLeftTile(item: this, priority: 100)
 
-  destroyActiveTerm: ->
+  destroyActiveTerm: -> # destroy the terminal by calling the method that removes it from the array
      @commandViews[@activeIndex]?.destroy()
 
   # Tear down any state and detach
@@ -75,6 +75,6 @@ class CliStatusView extends View
       @removeCommandView @commandViews[index]
     @detach()
 
-  toggle: ->
+  toggle: -> # if exists then just show else create one
     @createCommandView() unless @commandViews[@activeIndex]?
     @commandViews[@activeIndex].toggle()
