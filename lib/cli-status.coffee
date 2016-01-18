@@ -1,9 +1,10 @@
+CliStatusView = require './cli-status-view'
+
 module.exports =
   cliStatusView: null
 
   activate: (state) ->
     atom.packages.onDidActivateInitialPackages =>
-      CliStatusView = require './cli-status-view'
       createStatusEntry = =>
         @cliStatusView = new CliStatusView(state.cliStatusViewState)
       createStatusEntry()
@@ -12,9 +13,7 @@ module.exports =
     @cliStatusView.destroy()
 
   provideCommandOutputView: ->
-    CliStatusView = require './cli-status-view'
-    @cliStatusView = new CliStatusView()
-    @cliStatusView.newTermClick() # this is returned
+    CliStatusView.get().newTermClick() # this is returned
 
   config:
     'windowHeight':
