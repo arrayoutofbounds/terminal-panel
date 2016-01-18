@@ -1,5 +1,5 @@
 {
-  "name": "terminal-panel-2",
+  "name": "terminal-panel-uoa",
   "main": "./lib/cli-status",
   "version": "0.2.1",
   "description": "A terminal interface and status icon. Fork of terminal-panel.",
