@@ -18,6 +18,7 @@ module.exports =
   provideCommandOutputView: -> # send the command output view so it can make a new terminal etc.
     console.log "API will be returned"
     console.log "state is provider is " + @state
+    window.state = @state 
     @cliStatusView = new CliStatusView(@state.cliStatusViewState)
     console.log "status view is " + @cliStatusView
     @cliStatusView
