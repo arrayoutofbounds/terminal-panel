@@ -13,7 +13,7 @@ module.exports =
 
   provideCommandOutputView: ->
     CliStatusView = require './cli-status-view'
-    @cliStatusView = new CliStatusView(state.cliStatusViewState)
+    @cliStatusView = new CliStatusView()
     @cliStatusView.newTermClick() # this is returned
 
   config:
