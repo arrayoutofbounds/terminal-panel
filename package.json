@@ -1,5 +1,5 @@
 {
-  "name": "terminal-panel-sysj",
+  "name": "terminal-panel-2",
   "main": "./lib/cli-status",
   "version": "0.1.2",
   "description": "A terminal interface and status icon. Fork of terminal-panel.",
