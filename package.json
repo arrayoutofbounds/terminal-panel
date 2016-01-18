@@ -13,5 +13,13 @@
     "atom-space-pen-views": "^2.0.3",
     "domify": "~1.2.2",
     "domutil": "~0.2.1"
+  },
+  "providedServices": {
+    "terminal-panel-uoa": {
+      "description": "Gives a Command output view",
+      "versions": {
+        "1.2.3": "provideCommandOutputView",
+      }
+    }
   }
 }

@@ -11,6 +11,10 @@ module.exports =
   deactivate: ->
     @cliStatusView.destroy()
 
+  provideCommandOutputView: ->
+    CliStatusView = require './cli-status-view'
+    CliStatusView.newTermClick() # this is returned 
+
   config:
     'windowHeight':
       type: 'integer'
