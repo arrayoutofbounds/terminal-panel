@@ -5,6 +5,7 @@ module.exports =
   state: null
 
   activate: (state) ->
+    @state = state
     console.log "Activating Terminal "
     atom.packages.onDidActivateInitialPackages =>
       CliStatusView = require './cli-status-view'
@@ -21,7 +22,7 @@ module.exports =
     console.log "API will be returned"
     if @cliStatusView == null
       console.log "cliStatusView is null so creating again"
-      @cliStatusView = new CliStatusView(state.cliStatusViewState)
+      @cliStatusView = new CliStatusView(@state.cliStatusViewState)
       @cliStatusView
     else
       @cliStatusView
