@@ -61,7 +61,9 @@ class CliStatusView extends View
     index >=0 and @commandViews.splice index, 1
 
   newTermClick: -> # create new command view and toggle it so it open
-    @createCommandView().toggle()
+    commandView = @createCommandView()
+    commandView.toggle()
+    return commandView
 
   attach: ->
     document.querySelector("status-bar").addLeftTile(item: this, priority: 100)
