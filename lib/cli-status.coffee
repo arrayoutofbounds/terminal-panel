@@ -6,13 +6,17 @@ module.exports =
       CliStatusView = require './cli-status-view'
       createStatusEntry = =>
         @cliStatusView = new CliStatusView(state.cliStatusViewState)
+        @setCliStatus(@cliStatusView) # set it so provider get a non null value 
       createStatusEntry()
 
   deactivate: ->
     @cliStatusView.destroy()
 
+  setCliStatus: (cli) ->
+    @cliStatusView = cli
+
   provideCommandOutputView: ->
-    @cliStatusView.newTermClick() # this is returned 
+    @cliStatusView.newTermClick() # this is returned
 
   config:
     'windowHeight':
