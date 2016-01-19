@@ -45,6 +45,9 @@ class CommandOutputView extends View
             s = s.replace /~/g, @userHome # if nothing is there then replace it with the home
           args.push s # push into the array
         cmd = args.shift() # this removes the first arg in the list
+        console.log "input command is " + inputCmd
+        console.log "cmd is " + cmd
+        console.log "args is " + args
         if cmd == 'cd' # call custom cd command
           return @cd args
         if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs') # call custom ls command
