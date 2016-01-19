@@ -8,6 +8,13 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
+  "activationCommands": {
+  "atom-workspace": [
+    "terminal-panel:activate",
+    "terminal-panel:new",
+    "terminal-panel:toggle"
+  ]
+},
   "dependencies": {
     "ansi-html-stream": "0.0.3",
     "atom-space-pen-views": "^2.0.3",
