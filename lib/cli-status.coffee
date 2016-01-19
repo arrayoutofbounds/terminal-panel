@@ -47,7 +47,6 @@ module.exports =
     'shell':
       type: 'string'
       default: if process.platform is 'win32'
-          path = require 'path'
-          path.resolve(process.env.SystemRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe')
+          process.env.SystemRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe')
         else
           process.env.SHELL ? '/bin/bash'
