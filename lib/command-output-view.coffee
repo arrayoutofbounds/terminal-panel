@@ -25,7 +25,7 @@ class CommandOutputView extends View
   initialize: ->
     @userHome = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE # set the home of the user in case folder is not there
     cmd = 'test -e /etc/profile && source /etc/profile;test -e ~/.profile && source ~/.profile; node -pe "JSON.stringify(process.env)"'
-    shell = atom.config.get 'terminal-panel.shell' # this is the default value in the config in the main file
+    shell = atom.config.get 'terminal-panel-uoa.shell' # this is the default value in the config in the main file
     exec cmd, {shell}, (code, stdout, stderr) -> # start a shell process
       try
         process.env = JSON.parse(stdout)
@@ -50,7 +50,7 @@ class CommandOutputView extends View
         console.log "args is " + args
         if cmd == 'cd' # call custom cd command
           return @cd args
-        if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs') # call custom ls command
+        if cmd == 'ls' and atom.config.get('terminal-panel-uoa.overrideLs') # call custom ls command
           return @ls args
         if cmd == 'clear' # call clear and empty the cli output div and make input box empty by setting it to empty string
           @cliOutput.empty()
@@ -62,7 +62,7 @@ class CommandOutputView extends View
     @cmdEditor.show() #show the input box
     @cmdEditor.css('visibility', '')
     @cmdEditor.getModel().selectAll()
-    @cmdEditor.setText('') if atom.config.get('terminal-panel.clearCommandInput') # if cleared input then clear it
+    @cmdEditor.setText('') if atom.config.get('terminal-panel-uoa.clearCommandInput') # if cleared input then clear it
     @cmdEditor.focus() # focus on input so user can type in it
     @scrollToBottom() # scroll to bottom of cli so latest results can be seen
 
@@ -104,7 +104,7 @@ class CommandOutputView extends View
     @cmdEditor.focus()
     @cliOutput.css('font-family', atom.config.get('editor.fontFamily'))
     @cliOutput.css('font-size', atom.config.get('editor.fontSize') + 'px')
-    @cliOutput.css('max-height', atom.config.get('terminal-panel.windowHeight') + 'vh')
+    @cliOutput.css('max-height', atom.config.get('terminal-panel-uoa.windowHeight') + 'vh')
 
   close: ->
     @lastLocation.activate()
@@ -218,7 +218,7 @@ class CommandOutputView extends View
     htmlStream.on 'data', (data) =>
       @cliOutput.append data # append the data to the cli
       @scrollToBottom() # scroll to the bottom
-    shell = atom.config.get 'terminal-panel.shell' # get the default shell from the main file default
+    shell = atom.config.get 'terminal-panel-uoa.shell' # get the default shell from the main file default
     try
       @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd(), shell: shell # call exec on the input cmd and set the current working directory and shell
       @program.stdout.pipe htmlStream
@@ -228,14 +228,14 @@ class CommandOutputView extends View
       addClass @statusIcon, 'status-running' # icon at the bottom shows runnning
       @killBtn.removeClass 'hide' # show the kill button now that the process is running
       @program.once 'exit', (code) => # if process stops then make kill button disappear and log the exit number
-        console.log 'exit', code if atom.config.get('terminal-panel.logConsole')
+        console.log 'exit', code if atom.config.get('terminal-panel-uoa.logConsole')
         @killBtn.addClass 'hide'
         removeClass @statusIcon, 'status-running' # change icon
         @program = null # current running process becomes null
         addClass @statusIcon, code == 0 and 'status-success' or 'status-error'
         @showCmd() # this shows the command prompt or cli above input with the output
       @program.on 'error', (err) => # same as above
-        console.log 'error' if atom.config.get('terminal-panel.logConsole')
+        console.log 'error' if atom.config.get('terminal-panel-uoa.logConsole')
         @cliOutput.append err.message
         @showCmd()
         addClass @statusIcon, 'status-error'
@@ -243,7 +243,7 @@ class CommandOutputView extends View
         @flashIconClass 'status-info'
         removeClass @statusIcon, 'status-error'
       @program.stderr.on 'data', => # if there is a std error
-        console.log 'stderr' if atom.config.get('terminal-panel.logConsole')
+        console.log 'stderr' if atom.config.get('terminal-panel-uoa.logConsole')
         @flashIconClass 'status-error', 300
 
     catch err
