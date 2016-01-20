@@ -47,6 +47,7 @@ module.exports =
     'shell':
       type: 'string'
       default: if process.platform is 'win32'
-          'powershell.exe'
+          root = process.env.SystemRoot
+          root + "\\system32\\WindowsPowerShell\\v1.0\\powershell.exe"
         else
           process.env.SHELL ? '/bin/bash'
