@@ -2,13 +2,13 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'Terminal Panel'
+      'label': 'Terminal Panel UoA'
       'submenu': [
-        { 'label': 'Activate terminal-panel', 'command': 'terminal-panel:activate' }
-        { 'label': 'New', 'command': 'terminal-panel:new' }
-        { 'label': 'Toggle', 'command': 'terminal-panel:toggle' }
-        { 'label': 'Prev', 'command': 'terminal-panel:prev' }
-        { 'label': 'Next', 'command': 'terminal-panel:next' }
+        { 'label': 'Activate terminal-panel-uoa', 'command': 'terminal-panel-uoa:activate' }
+        { 'label': 'New', 'command': 'terminal-panel-uoa:new' }
+        { 'label': 'Toggle', 'command': 'terminal-panel-uoa:toggle' }
+        { 'label': 'Prev', 'command': 'terminal-panel-uoa:prev' }
+        { 'label': 'Next', 'command': 'terminal-panel-uoa:next' }
       ]
     ]
   }
