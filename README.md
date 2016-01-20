@@ -1,6 +1,8 @@
 terminal-panel
 ==============
 
+ A terminal interface and status icon. Fork of terminal-panel. Added API that allows any package to make a terminal in all OS.
+
 Terminal-panel executes your commands and displays the output. This means you can do all sorts of useful stuff right inside Atom, like:
 * run build scripts
 * start servers
