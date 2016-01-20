@@ -10,9 +10,9 @@
   },
   "activationCommands": {
     "atom-workspace": [
-      "terminal-panel:activate",
-      "terminal-panel:new",
-      "terminal-panel:toggle"
+      "terminal-panel-uoa:activate",
+      "terminal-panel-uoa:new",
+      "terminal-panel-uoa:toggle"
     ]
   },
   "dependencies": {
