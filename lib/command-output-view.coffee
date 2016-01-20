@@ -221,6 +221,7 @@ class CommandOutputView extends View
     shell = atom.config.get 'terminal-panel-uoa.shell' # get the default shell from the main file default
     try
       @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd(), shell: shell # call exec on the input cmd and set the current working directory and shell
+      console.log "PID IS ............. " + @program.pid  
       @program.stdout.pipe htmlStream
       @program.stderr.pipe htmlStream
       removeClass @statusIcon, 'status-success'
