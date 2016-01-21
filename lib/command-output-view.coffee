@@ -91,7 +91,7 @@ class CommandOutputView extends View
 
   kill: -> # if the process that is running is there then kill it
     if @program
-      console.log "PID when killing is  " + @program.pid  
+      console.log "PID when killing is  " + @program.pid
       @program.kill() # calls kill on the variable that holds exec process from the nodejs api
 
   open: -> # open called when toggled
