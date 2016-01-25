@@ -1,7 +1,7 @@
 {
   "name": "terminal-panel-uoa",
   "main": "./lib/cli-status",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A terminal interface and status icon. Fork of terminal-panel. Added API that allows any package to make a terminal in all OS.",
   "repository": "https://github.com/arrayoutofbounds/terminal-panel",
   "license": "MIT",
