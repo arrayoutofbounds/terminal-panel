@@ -1,4 +1,4 @@
-terminal-panel-UoA
+terminal-panel-uoa
 ==============
 
  A terminal interface and status icon. Fork of terminal-panel. Added API that allows any package to make a terminal in all OS.
@@ -43,7 +43,7 @@ Just press ``ctrl-` ``.
 ## Extra info
 
 Processes are killed via the node js api. You can check via "tasklist" for windows or "top/htop" for unix/linux/OSX.
-When the process running is killed the pid of the process ceases to exist. 
+When the process running is killed the pid of the process ceases to exist.
 
 ## Hotkeys
 
