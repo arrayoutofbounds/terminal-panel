@@ -1,7 +1,18 @@
-terminal-panel
+terminal-panel-UoA
 ==============
 
  A terminal interface and status icon. Fork of terminal-panel. Added API that allows any package to make a terminal in all OS.
+
+## How to use the API
+
+The package.json supplies the services provided. Consume the service (after reading the services API atom documentation).
+Then use the service and be able to add a terminal from your package programatically.
+
+The service gives a Cli-status-view object. That has the methods to create new terminals, toggle between them etc
+
+Each Cli-status-view object has a command-output-view object that actually runs the processes and displays the output.
+
+The code has been commented, so please read it before using it.  
 
 Terminal-panel executes your commands and displays the output. This means you can do all sorts of useful stuff right inside Atom, like:
 * run build scripts
@@ -28,6 +39,11 @@ Just press ``ctrl-` ``.
 * status icon
 * kill long running processes
 * optional fancy ls
+
+## Extra info
+
+Processes are killed via the node js api. You can check via "tasklist" for windows or "top/htop" for unix/linux/OSX.
+When the process running is killed the pid of the process ceases to exist. 
 
 ## Hotkeys
 
