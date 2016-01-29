@@ -34,6 +34,13 @@ consumeCommandOutputView: (commandOutputView) ->
   console.log "New terminal created" # lets you know a new terminal has been created
 ```
 
+Then you can use the command output view to make a new terminal by adding the following method to your code:
+
+```coffee
+createTerminal: ->
+  terminal = @commandOutputView.newTermClick() #create new terminal
+  terminal
+```
 
 
 ## What you can do with the terminal GUI
