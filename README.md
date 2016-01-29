@@ -1,7 +1,8 @@
 terminal-panel-uoa
 ==============
 
- A terminal interface and status icon. Fork of terminal-panel. Added API that allows any package to make a terminal in all OS.
+ A terminal interface and status icon. Fork of terminal-panel. Added API that allows any package to make a terminal, pass it a command
+ and see the output (all via code). Works for Windows,Linux and OSX. No Dependencies.
 
 ## How to use the API
 
