@@ -22,7 +22,7 @@ terminal-panel-uoa
 
 I have used this package for research at University of Auckland (hence the uoa at the end of the name).
 
-Below is the result of using this package.
+Download the "sysj" package in atom or go to https://github.com/arrayoutofbounds/sysj to see an example of a package using the API.
 
 As you can see, I have a running process. At the bottom you can see the blue icon that shows the currently open terminal which
 you can toggle or destroy.
