@@ -14,7 +14,9 @@ terminal-panel-uoa
 
  Works for Windows,Linux and OSX. No Dependencies.
 
-#### NOTE : You must go the this package and "activate terminal panel" when atom is stared. If its not done, then you will receive a error when you call it from your package.
+###### Please do not hesitate to send any queries on github or at ades597@aucklanduni.ac.nz
+
+#### NOTE : You must go the this package and "activate terminal panel" when atom is started. If you do not then you will receive a error when you call it from your package.
 
 ## Example
 
