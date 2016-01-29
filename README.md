@@ -4,6 +4,7 @@ terminal-panel-uoa
  A terminal interface and status icon. Fork of terminal-panel. Added API that allows any package to make a terminal in all OS.
 
 ## How to use the API
+---
 
 The package.json supplies the services provided. Consume the service (after reading the services API atom documentation).
 Then use the service and be able to add a terminal from your package programatically.
