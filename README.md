@@ -27,6 +27,8 @@ Download the "sysj" package in atom or go to https://github.com/arrayoutofbounds
 As you can see, I have a running process. At the bottom you can see the blue icon that shows the currently open terminal which
 you can toggle or destroy.
 
+![A screenshot of your package](https://imgflip.com/gif/y823b)
+
 ![A screenshot of your package](http://i.imgur.com/NMCKks0.png)
 
 
