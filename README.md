@@ -8,6 +8,8 @@ terminal-panel-uoa
 
  Works for Windows,Linux and OSX. No Dependencies.
 
+#### NOTE : You must go the this package and "activate terminal panel" when atom is stared. If its not done, then you will receive a error when you call it from your package.
+
 ## How to use the API
 
 The package.json supplies the services provided. Consume the service (after reading the services API atom documentation).
@@ -17,7 +19,6 @@ The service gives a Cli-status-view object. That has the methods to create new t
 Each Cli-status-view object has a command-output-view object that actually runs the processes and displays the output.
 The code has been commented, so please read it before using it.  
 
-#### NOTE : You must go the this package and "activate terminal panel" when atom is stared. If its not done, then you will receive a error when you call it from your package."
 
 ##### Consuming the service in package.json:
 
@@ -60,8 +61,6 @@ The GUI will be created and the result of the command will be shown.
 terminal = @createTerminal()
 terminal.spawn(jdkPath + " -classpath " + pathToJar + @pathToClass + " com.systemj.SystemJRunner " + filePath,"java",["-classpath", "" + pathToJar + @pathToClass , 'com.systemj.SystemJRunner',"" + filePath])
 ```
-
-#### NOTE : You must go the this package and "activate terminal panel" when atom is stared. If its not done, then you will receive a error when you call it from your package."
 
 
 ## What you can do with the terminal GUI
