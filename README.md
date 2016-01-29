@@ -1,5 +1,5 @@
 Are you looking for a way to pass commands to the terminal via code? Do you want to run long processes with the ability to
-kill or destroy them? Do you want to ensure your code can creater command line/terminal in all operating systems? Do you want
+kill or destroy them? Do you want to ensure your code can create a command line/terminal in all operating systems? Do you want
 to use the terminal and enter commands while in atom?
 
 If so, then this package is for you. Even if you do not need the API, you can use the GUI.
