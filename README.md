@@ -8,6 +8,18 @@ terminal-panel-uoa
 The package.json supplies the services provided. Consume the service (after reading the services API atom documentation).
 Then use the service and be able to add a terminal from your package programatically.
 
+Consuming the service in package.json:
+
+```
+"consumedServices": {
+  "terminal-panel-uoa": {
+    "versions": {
+      "^1.2.3": "consumeCommandOutputView"
+    }
+  }
+}
+```
+
 The service gives a Cli-status-view object. That has the methods to create new terminals, toggle between them etc
 
 Each Cli-status-view object has a command-output-view object that actually runs the processes and displays the output.
