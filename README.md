@@ -44,6 +44,11 @@ createTerminal: ->
 
 ##### Example of using the method shown above
 
+Spawning the terminal will create a new terminal with the command you pass into it. Please beware of the path
+being different in the OS. Use path.sep to ensure it works on windows and linux/MacOSX.
+
+The GUI will be created and the result of the command will be shown.
+
 ```coffee
 terminal = @createTerminal()
 terminal.spawn(jdkPath + " -classpath " + pathToJar + @pathToClass + " com.systemj.SystemJRunner " + filePath,"java",["-classpath", "" + pathToJar + @pathToClass , 'com.systemj.SystemJRunner',"" + filePath])
