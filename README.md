@@ -18,6 +18,11 @@ terminal-panel-uoa
 
 ## Example
 
+I have used this package for research at University of Auckland (hence the uoa at the end of the name).
+
+Below is the result of using this package.
+
+[Imgur](http://i.imgur.com/NMCKks0.png)
 
 
 ## How to use the API
