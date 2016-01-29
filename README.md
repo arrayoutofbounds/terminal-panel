@@ -22,7 +22,7 @@ I have used this package for research at University of Auckland (hence the uoa a
 
 Below is the result of using this package.
 
-[Imgur](http://i.imgur.com/NMCKks0.png)
+![A screenshot of your package](http://i.imgur.com/NMCKks0.png)
 
 
 ## How to use the API
