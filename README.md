@@ -1,3 +1,9 @@
+Are you looking for a way to pass commands to the terminal via code? Do you want to run long processes with the ability to
+kill or destroy them? Do you want to ensure your code can creater command line/terminal in all operating systems? Do you want
+to use the terminal and enter commands while in atom?
+
+If so, then this package is for you. Even if you do not need the API, you can use the GUI.
+
 terminal-panel-uoa
 ==============
 
@@ -9,6 +15,10 @@ terminal-panel-uoa
  Works for Windows,Linux and OSX. No Dependencies.
 
 #### NOTE : You must go the this package and "activate terminal panel" when atom is stared. If its not done, then you will receive a error when you call it from your package.
+
+## Example
+
+
 
 ## How to use the API
 
