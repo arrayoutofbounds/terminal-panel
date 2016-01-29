@@ -14,7 +14,7 @@ The code has been commented, so please read it before using it.
 
 Consuming the service in package.json:
 
-```
+```json
 "consumedServices": {
   "terminal-panel-uoa": {
     "versions": {
