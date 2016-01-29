@@ -1,7 +1,7 @@
 {
   "name": "terminal-panel-uoa",
   "main": "./lib/cli-status",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "description": " A terminal interface and status icon. Includes an API that allows any package to make a terminal, pass it a command and see the output (all via code). Works for Windows,Linux and OSX.",
   "repository": "https://github.com/arrayoutofbounds/terminal-panel",
   "license": "MIT",
