@@ -26,7 +26,7 @@ Consuming the service in package.json:
 
 In your main file for the package you are building, add the following method:
 
-```
+```coffee
 consumeCommandOutputView: (commandOutputView) ->
   @commandOutputView = commandOutputView # assigns a instance variable
   console.log "API consumed" # lets you know you have used the API
