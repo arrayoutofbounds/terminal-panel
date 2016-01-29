@@ -14,6 +14,8 @@ Each Cli-status-view object has a command-output-view object that actually runs 
 
 The code has been commented, so please read it before using it.  
 
+## What you can do with the terminal GUI
+
 Terminal-panel executes your commands and displays the output. This means you can do all sorts of useful stuff right inside Atom, like:
 * run build scripts
 * start servers
