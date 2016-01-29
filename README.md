@@ -17,6 +17,8 @@ The service gives a Cli-status-view object. That has the methods to create new t
 Each Cli-status-view object has a command-output-view object that actually runs the processes and displays the output.
 The code has been commented, so please read it before using it.  
 
+#### NOTE : You must go the this package and "activate terminal panel" when atom is stared. If its not done, then you will receive a error when you call it from your package."
+
 ##### Consuming the service in package.json:
 
 ```json
@@ -59,6 +61,7 @@ terminal = @createTerminal()
 terminal.spawn(jdkPath + " -classpath " + pathToJar + @pathToClass + " com.systemj.SystemJRunner " + filePath,"java",["-classpath", "" + pathToJar + @pathToClass , 'com.systemj.SystemJRunner',"" + filePath])
 ```
 
+#### NOTE : You must go the this package and "activate terminal panel" when atom is stared. If its not done, then you will receive a error when you call it from your package."
 
 
 ## What you can do with the terminal GUI
