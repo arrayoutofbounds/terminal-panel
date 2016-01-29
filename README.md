@@ -12,7 +12,7 @@ The service gives a Cli-status-view object. That has the methods to create new t
 Each Cli-status-view object has a command-output-view object that actually runs the processes and displays the output.
 The code has been commented, so please read it before using it.  
 
-Consuming the service in package.json:
+##### Consuming the service in package.json:
 
 ```json
 "consumedServices": {
@@ -24,7 +24,7 @@ Consuming the service in package.json:
 }
 ```
 
-In your main file for the package you are building, add the following method:
+##### In your main file for the package you are building, add the following method:
 
 ```coffee
 consumeCommandOutputView: (commandOutputView) ->
@@ -34,7 +34,7 @@ consumeCommandOutputView: (commandOutputView) ->
   console.log "New terminal created" # lets you know a new terminal has been created
 ```
 
-Then you can use the command output view to make a new terminal by adding the following method to your code:
+##### Then you can use the command output view to make a new terminal by adding the following method to your code:
 
 ```coffee
 createTerminal: ->
