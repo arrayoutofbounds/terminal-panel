@@ -42,6 +42,14 @@ createTerminal: ->
   terminal
 ```
 
+##### Example of using the method shown above
+
+```coffee
+terminal = @createTerminal()
+terminal.spawn(jdkPath + " -classpath " + pathToJar + @pathToClass + " com.systemj.SystemJRunner " + filePath,"java",["-classpath", "" + pathToJar + @pathToClass , 'com.systemj.SystemJRunner',"" + filePath])
+```
+
+
 
 ## What you can do with the terminal GUI
 
